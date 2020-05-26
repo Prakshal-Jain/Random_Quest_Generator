@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <meta charset="UTF-8">
+
+    <title>Upload your Questions</title>
+
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
+    <link rel="stylesheet" href="timer.css">
+
+</head>
+<body>
+<div id = "user_box"><input type="text" id="user" placeholder="Username"><button onclick="username()">Enter Username</button></div>
+<div id = "hider" style="display:none;">
+
+<div id="default_username"></div>
+<input type="number" id = "set_time" onchange = "subm()"  min="0" oninput="validity.valid||(value='');">
+<!--<button onclick = "subm()">Start Timer</button>-->
+
+<audio id="myAudio">
+    <source src="default.mp3" type="audio/mpeg">
+</audio>
+<div id="app" style = "position: relative; float: right;"></div><br>
+
+<select onchange="location = this.value;">
+    <option value = "javascript:location.reload();"></option>
+    <option value="javascript:image_to_text();">Image to Text</option>
+    <option value="javascript:image();">Upload image</option>
+    <option value="javascript:textbox();">Type Question</option>
+</select>
+<div id = "sh"></div><br>
+<button onclick="show()">Show Next Question</button>
+<button onclick="re_display()">Show all Questions</button>
+<button onclick="hide()">Hide all Questions</button>
+<button onclick="clr()">Clear all</button>
+<button onclick="down();">Export Questions data into Excel</button>
+<button onclick = "onTimesUp()">Mark Question Completed</button>
+<a href="#" id="xx" style="display:none;"></a>
+
+<br><br>
+<center><div id = "display_area" style = 'width:80%; border-style: dotted;'></div><br></center>
+
+<table border = "1px" width = "100%" id = "queue">
+</table>
+<script src="upload.js"></script>
+
+
+<form onsubmit="return executeQuery();" id="cse-search-box-form-id">
+    <!-- This is the input searc box -->
+    <input type="text" id="cse-search-input-box-id" size="25" autocomplete="off" placeholder="Custom Search" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px; display:none;">
+    <!-- This is the search button -->
+    <input type="button" value="Search Solutions Online" id = "srch" style = "display:none;" onclick="executeQuery()">
+    <input name="siteurl" type="hidden" value="googlecustomsearch.appspot.com/elementv2/results-only_form_v2.html"><input name="ref" type="hidden" value=""><input name="ss" type="hidden" value=""></form>
+
+
+<script async src="https://cse.google.com/cse.js?cx=016417547492774390194:7by0thy0py1"></script>
+<div class="gcse-searchresults-only"></div>
+</div>
+</body>
+</html>
