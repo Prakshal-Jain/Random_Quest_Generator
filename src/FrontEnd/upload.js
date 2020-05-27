@@ -298,7 +298,7 @@ function username(){
 }
 
 function show_username(us){
-    document.getElementById("default_username").innerHTML = "Your default username is: <b>"+us+"</b>"
+    document.getElementById("default_username").innerHTML = us
 }
 
 //function encodeImageFileAsURL(element) {
