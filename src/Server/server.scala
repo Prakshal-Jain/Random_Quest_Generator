@@ -142,7 +142,15 @@ class server(){
       var u = username
       if(username == ""){
         u = code_generator()
-        socket.sendEvent("default_username",u)
+        socket.sendEvent("default_username","Hello! Your default username is <b>"+u+"</b>")
+      }
+      else if(username.contains("<") || username.contains(">")){
+        u = username.replace(">"," ")
+        u = u.replace("<"," ")
+        socket.sendEvent("default_username","Hello! Since we do not accept '>' or '<' in username, your username is <b>"+u+"</b>")
+      }
+      else{
+        socket.sendEvent("default_username","Hello <b>"+u+"</b>! How are you today?")
       }
       val bufferedSource = io.Source.fromFile("src/Functionality/all_users.txt")
       lines2 = (for (line <- bufferedSource.getLines()) yield line).toList
